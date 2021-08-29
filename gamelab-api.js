@@ -1,4 +1,222 @@
-!function(i){function e(e){for(var r,t,n=e[0],o=e[1],a=e[2],u=0,c=[];u<n.length;u++)t=n[u],l[t]&&c.push(l[t][0]),l[t]=0;for(r in o)Object.prototype.hasOwnProperty.call(o,r)&&(i[r]=o[r]);for(d&&d(e);c.length;)c.shift()();return p.push.apply(p,a||[]),f()}function f(){for(var e,r=0;r<p.length;r++){for(var t=p[r],n=!0,o=1;o<t.length;o++){var a=t[o];0!==l[a]&&(n=!1)}n&&(p.splice(r--,1),e=s(s.s=t[0]))}return e}var t={},l={0:0},p=[];function s(e){if(t[e])return t[e].exports;var r=t[e]={i:e,l:!1,exports:{}};return i[e].call(r.exports,r,r.exports,s),r.l=!0,r.exports}s.e=function(a){var e=[],t=l[a];if(0!==t)if(t)e.push(t[2]);else{var r=new Promise(function(e,r){t=l[a]=[e,r]});e.push(t[2]=r);var n,u=document.createElement("script");u.charset="utf-8",u.timeout=120,s.nc&&u.setAttribute("nonce",s.nc),u.src=function(e){return s.p+""+({}[e]||e)+"wp"+{4:"81e4cff4f827c180fe9f",5:"3b3ae2ccdc955d273ee1",7:"0624c45845502eb4a988",8:"64cddafdc3da4ff28a8d",9:"4c5776afdc3b419a7106",10:"4921c13c40e261787272",11:"70af63a0aa7bbeb4382a"}[e]+".min.js"}(a),n=function(e){u.onerror=u.onload=null,clearTimeout(c);var r=l[a];if(0!==r){if(r){var t=e&&("load"===e.type?"missing":e.type),n=e&&e.target&&e.target.src,o=new Error("Loading chunk "+a+" failed.\n("+t+": "+n+")");o.type=t,o.request=n,r[1](o)}l[a]=void 0}};var c=setTimeout(function(){n({type:"timeout",target:u})},12e4);u.onerror=u.onload=n,document.head.appendChild(u)}return Promise.all(e)},s.m=i,s.c=t,s.d=function(e,r,t){s.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},s.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},s.t=function(r,e){if(1&e&&(r=s(r)),8&e)return r;if(4&e&&"object"==typeof r&&r&&r.__esModule)return r;var t=Object.create(null);if(s.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:r}),2&e&&"string"!=typeof r)for(var n in r)s.d(t,n,function(e){return r[e]}.bind(null,n));return t},s.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return s.d(r,"a",r),r},s.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},s.p="/assets/js/",s.oe=function(e){throw console.error(e),e};var r=window.webpackJsonp=window.webpackJsonp||[],n=r.push.bind(r);r.push=e,r=r.slice();for(var o=0;o<r.length;o++)e(r[o]);var d=n;f()}([]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// install a JSONP callback for chunk loading
+/******/ 	function webpackJsonpCallback(data) {
+/******/ 		var chunkIds = data[0];
+/******/ 		var moreModules = data[1];
+/******/ 		var executeModules = data[2];
+/******/
+/******/ 		// add "moreModules" to the modules object,
+/******/ 		// then flag all "chunkIds" as loaded and fire callback
+/******/ 		var moduleId, chunkId, i = 0, resolves = [];
+/******/ 		for(;i < chunkIds.length; i++) {
+/******/ 			chunkId = chunkIds[i];
+/******/ 			if(installedChunks[chunkId]) {
+/******/ 				resolves.push(installedChunks[chunkId][0]);
+/******/ 			}
+/******/ 			installedChunks[chunkId] = 0;
+/******/ 		}
+/******/ 		for(moduleId in moreModules) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				modules[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if(parentJsonpFunction) parentJsonpFunction(data);
+/******/
+/******/ 		while(resolves.length) {
+/******/ 			resolves.shift()();
+/******/ 		}
+/******/
+/******/ 		// add entry modules from loaded chunk to deferred list
+/******/ 		deferredModules.push.apply(deferredModules, executeModules || []);
+/******/
+/******/ 		// run deferred modules when all chunks ready
+/******/ 		return checkDeferredModules();
+/******/ 	};
+/******/ 	function checkDeferredModules() {
+/******/ 		var result;
+/******/ 		for(var i = 0; i < deferredModules.length; i++) {
+/******/ 			var deferredModule = deferredModules[i];
+/******/ 			var fulfilled = true;
+/******/ 			for(var j = 1; j < deferredModule.length; j++) {
+/******/ 				var depId = deferredModule[j];
+/******/ 				if(installedChunks[depId] !== 0) fulfilled = false;
+/******/ 			}
+/******/ 			if(fulfilled) {
+/******/ 				deferredModules.splice(i--, 1);
+/******/ 				result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
+/******/ 			}
+/******/ 		}
+/******/ 		return result;
+/******/ 	}
+/******/
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// object to store loaded and loading chunks
+/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 	// Promise = chunk loading, 0 = chunk loaded
+/******/ 	var installedChunks = {
+/******/ 		0: 0
+/******/ 	};
+/******/
+/******/ 	var deferredModules = [];
+/******/
+/******/ 	// script path function
+/******/ 	function jsonpScriptSrc(chunkId) {
+/******/ 		return __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "wp" + {"4":"81e4cff4f827c180fe9f","5":"3b3ae2ccdc955d273ee1","7":"0624c45845502eb4a988","8":"64cddafdc3da4ff28a8d","9":"4c5776afdc3b419a7106","10":"4921c13c40e261787272","11":"70af63a0aa7bbeb4382a"}[chunkId] + ".min.js"
+/******/ 	}
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/ 	// This file contains only the entry chunk.
+/******/ 	// The chunk loading function for additional chunks
+/******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
+/******/ 		var promises = [];
+/******/
+/******/
+/******/ 		// JSONP chunk loading for javascript
+/******/
+/******/ 		var installedChunkData = installedChunks[chunkId];
+/******/ 		if(installedChunkData !== 0) { // 0 means "already installed".
+/******/
+/******/ 			// a Promise means "currently loading".
+/******/ 			if(installedChunkData) {
+/******/ 				promises.push(installedChunkData[2]);
+/******/ 			} else {
+/******/ 				// setup Promise in chunk cache
+/******/ 				var promise = new Promise(function(resolve, reject) {
+/******/ 					installedChunkData = installedChunks[chunkId] = [resolve, reject];
+/******/ 				});
+/******/ 				promises.push(installedChunkData[2] = promise);
+/******/
+/******/ 				// start chunk loading
+/******/ 				var script = document.createElement('script');
+/******/ 				var onScriptComplete;
+/******/
+/******/ 				script.charset = 'utf-8';
+/******/ 				script.timeout = 120;
+/******/ 				if (__webpack_require__.nc) {
+/******/ 					script.setAttribute("nonce", __webpack_require__.nc);
+/******/ 				}
+/******/ 				script.src = jsonpScriptSrc(chunkId);
+/******/
+/******/ 				onScriptComplete = function (event) {
+/******/ 					// avoid mem leaks in IE.
+/******/ 					script.onerror = script.onload = null;
+/******/ 					clearTimeout(timeout);
+/******/ 					var chunk = installedChunks[chunkId];
+/******/ 					if(chunk !== 0) {
+/******/ 						if(chunk) {
+/******/ 							var errorType = event && (event.type === 'load' ? 'missing' : event.type);
+/******/ 							var realSrc = event && event.target && event.target.src;
+/******/ 							var error = new Error('Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')');
+/******/ 							error.type = errorType;
+/******/ 							error.request = realSrc;
+/******/ 							chunk[1](error);
+/******/ 						}
+/******/ 						installedChunks[chunkId] = undefined;
+/******/ 					}
+/******/ 				};
+/******/ 				var timeout = setTimeout(function(){
+/******/ 					onScriptComplete({ type: 'timeout', target: script });
+/******/ 				}, 120000);
+/******/ 				script.onerror = script.onload = onScriptComplete;
+/******/ 				document.head.appendChild(script);
+/******/ 			}
+/******/ 		}
+/******/ 		return Promise.all(promises);
+/******/ 	};
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/assets/js/";
+/******/
+/******/ 	// on error function for async loading
+/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
+/******/
+/******/ 	var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
+/******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
+/******/ 	jsonpArray.push = webpackJsonpCallback;
+/******/ 	jsonpArray = jsonpArray.slice();
+/******/ 	for(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
+/******/ 	var parentJsonpFunction = oldJsonpFunction;
+/******/
+/******/
+/******/ 	// run deferred modules from other chunks
+/******/ 	checkDeferredModules();
+/******/ })
+/************************************************************************/
+/******/ ([]);
 (window.webpackJsonp=window.webpackJsonp||[]).push([[70],{10:function(t,i,o){"use strict";Object.defineProperty(i,"__esModule",{value:!0}),i.isSubsequence=function(t,e){var n=0,r=0;for(;r<e.length;){for(;n<t.length&&e[r]!==t[n];)n++;if(n>=t.length)return!1;r++,n++}return!0},i.shallowCopy=function(t){var e={};for(var n in t)e[n]=t[n];return e},i.cloneWithoutFunctions=function(t){return JSON.parse(JSON.stringify(t))},i.quote=function(t){return'"'+t+'"'},i.extend=function(t,e){var n=i.shallowCopy(t);for(var r in e)n[r]=e[r];return n},i.escapeHtml=function(t){return t?t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;").replace(/\//g,"&#47;"):""},i.mod=function(t,e){return(t%e+e)%e},i.range=function(t,e){for(var n=[],r=t;r<=e;r++)n.push(r);return n},i.executeIfConditional=function(t,e){return function(){if(t())return e.apply(this,arguments)}},i.stripQuotes=function(t){return t.replace(/["']/g,"")},i.wrapNumberValidatorsForLevelBuilder=function(){var e=Blockly.FieldTextInput.nonnegativeIntegerValidator,n=Blockly.FieldTextInput.numberValidator;Blockly.FieldTextInput.nonnegativeIntegerValidator=function(t){return"???"===t?t:e(t)},Blockly.FieldTextInput.numberValidator=function(t){return"???"===t?t:n(t)}},i.randomValue=f,i.randomKey=function(t){return f(Object.keys(t))},i.createUuid=function(){return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(t){var e=16*Math.random()|0,n="x"===t?e:3&e|8;return n.toString(16)})},i.fireResizeEvent=function(){var t=document.createEvent("Event");t.initEvent("resize",!0,!0),window.dispatchEvent(t)},i.valueOr=function(t,e){return void 0===t?e:t},i.isInfiniteRecursionError=function(t){if(t instanceof RangeError&&/^Maximum call stack size exceeded/.test(t.message))return!0;if("undefined"!=typeof InternalError&&t instanceof InternalError&&"too much recursion"===t.message)return!0;if(t instanceof Error&&"Out of stack space"===t.message)return!0;return!1},i.unescapeText=function(t){var e=t;return e=(e=(e=(e=(e=(e=e.replace(/(?!^)<div[^>]*>/gi,"\n")).replace(/<[^>]+>/gi,"")).replace(/&nbsp;/gi," ")).replace(/&gt;/gi,">")).replace(/&lt;/gi,"<")).replace(/&amp;/gi,"&")},i.escapeText=function(t){var e=t.toString(),n=(e=(e=(e=(e=e.replace(/&/g,"&amp;")).replace(/</g,"&lt;")).replace(/>/g,"&gt;")).replace(/ {2}/g," &nbsp;")).split("\n"),r=n[0],i=n.slice(1);0===r.length&&1<n.length&&(r="<br>");return r+i.map(function(t){return"<div>"+(t.length?t:"<br>")+"</div>"}).join("")},i.showGenericQtip=l,i.showUnusedBlockQtip=function(t){var e=o(3),n=e.unattachedBlockTipTitle(),r=e.unattachedBlockTipBody();l(t,n,r,{my:"bottom left",at:"top right"})},i.tryGetLocalStorage=function(t,e){if(void 0===e)throw"tryGetLocalStorage requires defaultValue";var n=e;try{n=localStorage.getItem(t)}catch(t){}return n},i.trySetLocalStorage=function(t,e){try{return localStorage.setItem(t,e),!0}catch(t){return!1}},i.tryGetSessionStorage=h,i.trySetSessionStorage=p,i.makeEnum=function(){for(var t,e={},n=0;n<arguments.length;n++){if(t=String(arguments[n]),e[t])throw new Error('Key "'+t+'" occurred twice while constructing enum');e[t]=t}Object.freeze&&Object.freeze(e);return e},i.ellipsify=function(t,e){if(t&&t.length>e)return t.substr(0,e-3)+"...";return t||""},i.deepMergeConcatArrays=function(t,e){return u.default.fromJS(t).mergeWith(function t(e,n){var r=u.default.List.isList;if(r(e)&&r(n))return e.concat(n);if(e&&e.mergeWith)return e.mergeWith(t,n);return n},e).toJS()},i.createEvent=function(e){var n,r=1<arguments.length&&void 0!==arguments[1]&&arguments[1],i=2<arguments.length&&void 0!==arguments[2]&&arguments[2];try{n=new Event(e,{bubbles:r,cancelable:i})}catch(t){(n=document.createEvent("Event")).initEvent(e,r,i)}return n},i.normalize=function(t){var e=Math.sqrt(t.x*t.x+t.y*t.y);return 0!==e?{x:t.x/e,y:t.y/e}:t},i.xFromPosition=function(t){var e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:0,n=2<arguments.length&&void 0!==arguments[2]?arguments[2]:0;switch(t){case r.Position.OUTTOPOUTLEFT:case r.Position.TOPOUTLEFT:case r.Position.MIDDLEOUTLEFT:case r.Position.BOTTOMOUTLEFT:case r.Position.OUTBOTTOMOUTLEFT:return-n;case r.Position.OUTTOPLEFT:case r.Position.TOPLEFT:case r.Position.MIDDLELEFT:case r.Position.BOTTOMLEFT:case r.Position.OUTBOTTOMLEFT:return 0;case r.Position.OUTTOPCENTER:case r.Position.TOPCENTER:case r.Position.MIDDLECENTER:case r.Position.BOTTOMCENTER:case r.Position.OUTBOTTOMCENTER:return(e-n)/2;case r.Position.OUTTOPRIGHT:case r.Position.TOPRIGHT:case r.Position.MIDDLERIGHT:case r.Position.BOTTOMRIGHT:case r.Position.OUTBOTTOMRIGHT:return e-n;case r.Position.OUTTOPOUTRIGHT:case r.Position.TOPOUTRIGHT:case r.Position.MIDDLEOUTRIGHT:case r.Position.BOTTOMOUTRIGHT:case r.Position.OUTBOTTOMOUTRIGHT:return e}},i.yFromPosition=function(t){var e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:0,n=2<arguments.length&&void 0!==arguments[2]?arguments[2]:0;switch(t){case r.Position.OUTTOPOUTLEFT:case r.Position.OUTTOPLEFT:case r.Position.OUTTOPCENTER:case r.Position.OUTTOPRIGHT:case r.Position.OUTTOPOUTRIGHT:return-n;case r.Position.TOPOUTLEFT:case r.Position.TOPLEFT:case r.Position.TOPCENTER:case r.Position.TOPRIGHT:case r.Position.TOPOUTRIGHT:return 0;case r.Position.MIDDLEOUTLEFT:case r.Position.MIDDLELEFT:case r.Position.MIDDLECENTER:case r.Position.MIDDLERIGHT:case r.Position.MIDDLEOUTRIGHT:return(e-n)/2;case r.Position.BOTTOMOUTLEFT:case r.Position.BOTTOMLEFT:case r.Position.BOTTOMCENTER:case r.Position.BOTTOMRIGHT:case r.Position.BOTTOMOUTRIGHT:return e-n;case r.Position.OUTBOTTOMOUTLEFT:case r.Position.OUTBOTTOMLEFT:case r.Position.OUTBOTTOMCENTER:case r.Position.OUTBOTTOMRIGHT:case r.Position.OUTBOTTOMOUTRIGHT:return e}},i.levenshtein=function(t,e){if(!t||!e)return(t||e).length;for(var n=[],r=0;r<=e.length;r++)if(n[r]=[r],0!==r)for(var i=0;i<=t.length;i++)0!==(n[0][i]=i)&&(n[r][i]=e.charAt(r-1)===t.charAt(i-1)?n[r-1][i-1]:Math.min(n[r-1][i-1]+1,n[r][i-1]+1,n[r-1][i]+1));return n[e.length][t.length]},i.bisect=function(t,e){var n=t.filter(function(t){return e(t)}),r=t.filter(function(t){return!e(t)});return[n,r]},i.flatten=function n(t){return t.reduce(function(t,e){return t.concat(Array.isArray(e)?n(e):e)},[])},i.reload=function(){window.location.reload()},i.currentLocation=function(){return window.location},i.windowOpen=function(){var t;return(t=window).open.apply(t,arguments)},i.navigateToHref=function(t){window.location.href=t},i.stringifyQueryParams=function(e){if(!e)return"";var t=Object.keys(e);return t.length?"?"+t.map(function(t){return"".concat(t,"=").concat(e[t])}).join("&"):""},i.linkWithQueryParams=function(t){var e=window.location.search||"";return t+e},i.resetAniGif=function(t){if(!t)return;var e=t.src;t.src="#",setTimeout(function(){return t.src=e},0)},i.interpolateColors=function(t,e,n){var r=new c.default(t),i=new c.default(e),o=r.r*(1-n)+i.r*n,a=r.g*(1-n)+i.g*n,u=r.b*(1-n)+i.b*n;return"rgb(".concat(o,", ").concat(a,", ").concat(u,")")},i.getTabId=function(){var t=h("tabId",!1);if(t)return t;return p("tabId",Math.random()+""),h("tabId",!1)},i.createHiddenPrintWindow=function(t){(0,n.dataURIFromURI)(t).then(function(t){var e=(0,a.default)('<iframe style="position: absolute; visibility: hidden;"></iframe>');e.appendTo("body"),e[0].contentWindow.document.write('<img src="'.concat(t,'" style="border: 1px solid #000;" onload="if (document.execCommand(\'print\', false, null)) {  } else { window.print(); }"/>'))})},i.calculateOffsetCoordinates=function(t,e,n){var r=t.getBoundingClientRect();return{x:Math.round((e-r.left)*t.offsetWidth/r.width),y:Math.round((n-r.top)*t.offsetHeight/r.height)}},i.hashString=function(t){return(0,e.default)(t).toString()},i.tooltipifyVocabulary=function(){(0,a.default)(".vocab").each(function(){(0,a.default)(this).tooltip({placement:"bottom"})})},i.findProfanity=void 0;var a=s(o(9)),u=s(o(97)),e=s(o(154)),c=s(o(216)),r=o(28),n=o(136);function s(t){return t&&t.__esModule?t:{default:t}}function f(t){return t[Math.floor(Math.random()*t.length)]}function l(t,e,n,r){(0,a.default)(t).qtip({content:{text:"\n        <h4>".concat(e,"</h4>\n        <p>").concat(n,"</p>\n      "),title:{button:(0,a.default)('<div class="tooltip-x-close"/>')}},position:r,style:{classes:"cdo-qtips",tip:{width:20,height:20}},hide:{event:"unfocus"},show:!1}).qtip("show")}function h(t,e){if(void 0===e)throw"tryGetSessionStorage requires defaultValue";var n=e;try{n=sessionStorage.getItem(t)}catch(t){}return n}function p(t,e){try{return sessionStorage.setItem(t,e),!0}catch(t){if("QuotaExceededError"!==t.name)throw t;return!1}}o(188),Function.prototype.inherits=function(t){this.prototype=Object.create(t.prototype),(this.prototype.constructor=this).superPrototype=t.prototype};i.findProfanity=function(t,e){var n=2<arguments.length&&void 0!==arguments[2]?arguments[2]:null,r={url:"/profanity/find",method:"POST",contentType:"application/json;charset=UTF-8",data:JSON.stringify({text:t,locale:e})};return n&&(r.headers={"X-CSRF-Token":n}),a.default.ajax(r)}},1033:function(t,e,n){"use strict";function r(t,e){this.config=t,this.audioContext=e,this.audioElement=null,this.reusableBuffer=null,this.playableBuffers=[],this.isPlayingCount=0,this.isPlaying_=!1,this.isLoaded_=!1,this.didLoadFail_=!1}Object.defineProperty(e,"__esModule",{value:!0}),(e.default=r).prototype.play=function(t){if(t=t||{},this.audioElement||this.reusableBuffer){if(this.reusableBuffer){var e=this.playableBuffers.push(this.newPlayableBufferSource(this.reusableBuffer,t))-1;return this.playableBuffers[e].onended=function(){this.isPlayingCount--,0===this.isPlayingCount&&(this.isPlaying_=!1,t.onEnded&&t.onEnded())}.bind(this),this.playableBuffers[e].start?this.playableBuffers[e].start(0):this.playableBuffers[e].noteOn(0),void this.handlePlayStarted(t)}if(!this.config.allowHTML5Mobile&&"ontouchstart"in document.documentElement)this.handlePlayFailed(t);else{var n=void 0===t.volume?1:Math.max(0,Math.min(1,t.volume));this.audioElement.volume=n,this.audioElement.loop=!!t.loop;var r=function(){this.audioElement.removeEventListener("abort",r),this.audioElement.removeEventListener("ended",r),this.audioElement.removeEventListener("pause",r),this.isPlaying_=!1,t.onEnded&&t.onEnded()}.bind(this);this.audioElement.addEventListener("abort",r),this.audioElement.addEventListener("ended",r),this.audioElement.addEventListener("pause",r),this.audioElement.play(),this.handlePlayStarted(t)}}else this.handlePlayFailed(t)},r.prototype.playAfterLoad=function(t){this.isLoaded()||this.config.playAfterLoad?this.handlePlayFailed(t):(this.config.playAfterLoad=!0,this.config.playAfterLoadOptions=t)},r.prototype.handlePlayFailed=function(t){t.callback&&t.callback(!1)},r.prototype.handleLoadFailed=function(t){this.didLoadFail_=!0;var e=this.config,n=e.onPreloadError,r=e.playAfterLoadOptions;n&&n(t);var i=r&&r.callback;i&&i(!1)},r.prototype.handlePlayStarted=function(t){this.isPlayingCount++,this.isPlaying_=!0,t.callback&&t.callback(!0)},r.prototype.stop=function(){try{if(this.playableBuffers.length)for(var t in this.playableBuffers)this.playableBuffers[t].stop?this.playableBuffers[t].stop(0):this.playableBuffers[t].noteOff&&this.playableBuffers[t].noteOff(0),this.isPlayingCount--;else this.audioElement&&(this.audioElement.pause(),this.audioElement.currentTime=0)}catch(t){if("InvalidStateError"!==t.name)throw t}this.isPlaying_=!1},r.prototype.isPlaying=function(){return this.isPlaying_},r.prototype.isLoaded=function(){return this.isLoaded_},r.prototype.didLoadFail=function(){return this.didLoadFail_},r.prototype.newPlayableBufferSource=function(t,e){var n=this.audioContext.createBufferSource();if(this.audioContext.createGain)this.gainNode=this.audioContext.createGain();else{if(!this.audioContext.createGainNode)return null;this.gainNode=this.audioContext.createGainNode()}n.buffer=t,n.loop=!!e.loop,n.connect(this.gainNode),this.gainNode.connect(this.audioContext.destination);var r=void 0===e.volume?1:e.volume;return this.gainNode.gain.value=r,n},r.prototype.fadeToGain=function(t,e){this.gainNode?this.fadeToGainWebAudio_(t,e):this.audioElement&&this.fadeToGainHtml5Audio_(t,e)},r.prototype.fadeToGainWebAudio_=function(t,e){if(this.gainNode){0===t&&(t=.01);var n=this.audioContext.currentTime;this.gainNode.gain.setValueAtTime(this.gainNode.gain.value,n),this.gainNode.gain.exponentialRampToValueAtTime(t,n+e)}},r.prototype.fadeToGainHtml5Audio_=function(t,e){if(this.audioElement)var n=this.audioElement.volume||1,r=Math.max(0,Math.min(1,t)),i=r-n,o=1e3*e,a=(new Date).getTime(),u=setInterval(function(){var t=(new Date).getTime()-a;if(o<=t)return this.audioElement.volume=r,void clearInterval(u);var e=i*Math.pow(t/o,2)+n;this.audioElement.volume=Math.max(0,Math.min(1,e))}.bind(this),100)},r.prototype.getPlayableFile=function(){try{if(!window.Audio)return!1;var t=new window.Audio;if(this.config.hasOwnProperty("mp3")&&t.canPlayType("audio/mp3"))return this.config.mp3;if(this.config.hasOwnProperty("ogg")&&t.canPlayType("audio/ogg"))return this.config.ogg;if(this.config.hasOwnProperty("wav")&&t.canPlayType("audio/wav"))return this.config.wav}catch(t){}return!1},r.prototype.getPlayableBytes=function(){try{if(!window.Audio)return!1;var t=new window.Audio;if(this.config.hasOwnProperty("bytes")&&t.canPlayType("audio/mp3"))return this.config.bytes}catch(t){console.warn("No bytes provided or mp3 is not supported")}return!1},r.prototype.preloadFile=function(){var t=this.getPlayableFile();if(t)if(!this.config.forceHTML5&&window.AudioContext&&this.audioContext){var e=this;this.preloadViaWebAudio(t,function(t){e.reusableBuffer=t})}else if(window.Audio){var n=new window.Audio(t);this.preloadAudioElement(n)}},r.prototype.preloadBytes=function(){var t=this.getPlayableBytes();if(t)if(!this.config.forceHTML5&&window.AudioContext&&this.audioContext){var e=this;e.audioContext.decodeAudioData(t,function(t){e.reusableBuffer=t,e.onSoundLoaded()})}else if(window.Audio){var n=new Blob([t],{type:"audio/mpeg3"}),r=window.URL.createObjectURL(n),i=new window.Audio(r);this.preloadAudioElement(i)}},r.prototype.preloadAudioElement=function(t){var e=this;if(t&&t.play){(function(){var t=-1;return/MSIE\s([\d.]+)/.test(navigator.userAgent)&&(t=parseInt(RegExp.$1)),9===t})()||(t.play(),t.pause()),this.audioElement=t;var n="canplaythrough",r=function(){this.onSoundLoaded(),t.removeEventListener(n,r)}.bind(this);t.addEventListener(n,r),t.addEventListener("error",function(){e.handleLoadFailed()})}},r.prototype.onSoundLoaded=function(){this.isLoaded_=!0,this.config.playAfterLoad&&this.play(this.config.playAfterLoadOptions),this.onLoad&&this.onLoad()},r.prototype.preloadViaWebAudio=function(t,e){var n=new XMLHttpRequest;n.open("GET",t,!0),n.responseType="arraybuffer";var r=this;n.onload=function(){200===n.status?r.audioContext.decodeAudioData(n.response,function(t){e(t),r.onSoundLoaded()}):r.handleLoadFailed(n.status)},n.onerror=function(){r.handleLoadFailed(n.status)},n.send()},t.exports=e.default},104:function(t,e,n){var r=n(218);t.exports=function(t){return Object(r(t))}},105:function(r,i,o){var a,u;
 /*!
  * JavaScript Cookie v2.1.3
